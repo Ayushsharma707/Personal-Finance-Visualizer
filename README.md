@@ -2,8 +2,6 @@
 
 A modern **expense tracking** web application that allows users to **add, edit, delete, and categorize financial transactions** while providing **insights using visual charts**.
 
-![Personal Finance Visualizer](https://via.placeholder.com/1000x300?text=Personal+Finance+Visualizer) <!-- Replace with actual image -->
-
 ---
 
 ## 🚀 Features  
@@ -28,15 +26,6 @@ A modern **expense tracking** web application that allows users to **add, edit, 
 | **Mongoose** | ODM for MongoDB |
 | **Recharts** | Data visualization (Pie & Bar Charts) |
 
----
-
-## 📸 Screenshots  
-
-| **Dashboard** | **Category Chart** |
-|------------|---------------|
-| ![Dashboard](https://via.placeholder.com/500x300?text=Dashboard) | ![Category Chart](https://via.placeholder.com/500x300?text=Category+Chart) |
-
----
 
 ## 🔧 Installation & Setup  
 
