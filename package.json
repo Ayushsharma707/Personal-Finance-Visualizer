@@ -17,10 +17,11 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.15.1",
-    "ui": "github:shadcn/ui"
+    "@shadcn/ui": "git+https://github.com/shadcn/ui.git"
+
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@esli  nt/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
