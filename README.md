@@ -94,21 +94,22 @@ Now, open http://localhost:3000 in your browser.
 - Hover over a transaction in the Recent Transactions List.  
 - Click the ✏️ Edit or 🗑️ Delete button.
 
-### **🛠️ Contributing**  
+## 🛠️ Contributing
+
 We welcome contributions! To contribute:
 
-1. Fork the repository.
-2. Create a new branch (e.g., `feature-branch`).
-3. Commit your changes:  
-   ```bash
-   git commit -m "Added feature X"
-   ```
-   
+1. Fork the repository
+2. Create a new branch (`feature-branch`)
+3. Commit your changes:
+    ```bash
+    git commit -m "Added feature X"
+    ```
+4. Push to GitHub:
+    ```bash
+    git push origin feature-branch
+    ```
+5. Submit a pull request
 
-git push origin feature-branch
-
-
-This ensures the sections are properly formatted and easy to follow! 🚀 Let me know if you need any more changes.
 
 
 
