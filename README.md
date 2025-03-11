@@ -61,29 +61,13 @@ npm run dev
 Now, open http://localhost:3000 in your browser.
 ```
 
-### **📂 Folder Structure**  
-
-```graphql
-📂 src
- ├── 📂 components        # UI components (TransactionForm, Charts, Dashboard)
- ├── 📂 lib               # Database connection (MongoDB)
- ├── 📂 models            # Mongoose schemas
- ├── 📂 pages
- │   ├── index.js         # Home page
- │   ├── api
- │   │   ├── transactions.js  # API routes for transactions
- ├── 📂 styles            # Global styles
- ├── .env.local           # Environment variables (not committed)
- ├── package.json         # Dependencies & scripts
- ├── README.md            # Project documentation
 
 ```
 ### **🖥️ Usage**
 
 1️⃣ **Adding a Transaction**  
-- Click on "Add Transaction".  
 - Enter amount, date, description, and category.  
-- Click Submit.  
+- Click on "Add Transaction.
 
 2️⃣ **Viewing Expenses**  
 - The Summary Dashboard shows total expenses and recent transactions.  
