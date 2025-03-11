@@ -21,7 +21,7 @@
 
   },
   "devDependencies": {
-    "@esli  nt/eslintrc": "^3",
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
