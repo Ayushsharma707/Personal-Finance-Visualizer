@@ -1,26 +1,248 @@
-@import "tailwindcss";
+/* Import a clean, modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #eef2f3, #dfe9f3);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Main Container */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.container:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+input, button {
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+input {
+  background: #fff;
+}
+
+input:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+}
+
+/* Button Styles */
+button {
+  background: #6366f1;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+/* Transactions List */
+.transaction-list {
+  list-style: none;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+}
+
+/* Transaction Item */
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.transaction-item:hover {
+  transform: scale(1.02);
+}
+
+/* Income & Expense Colors */
+.transaction-income {
+  border-left: 5px solid #10b981; /* Green */
+}
+
+.transaction-expense {
+  border-left: 5px solid #ef4444; /* Red */
+}
+
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-amount {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.transaction-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Transaction Buttons */
+.transaction-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background: #3b82f6; /* Blue */
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #2563eb;
+}
+
+.delete-btn {
+  background: #f43f5e; /* Red */
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #e11d48;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.chart-container:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.chart-placeholder {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #6b7280;
+  padding: 20px;
+}
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.transaction-item:hover {
+  background: #f3f4f6;
+}
+
+.transaction-buttons {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.transaction-item:hover .transaction-buttons {
+  opacity: 1;
+}
+
+.edit-btn, .delete-btn {
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background: #3b82f6; /* Blue */
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #2563eb;
+}
+
+.delete-btn {
+  background: #f43f5e; /* Red */
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #e11d48;
 }
