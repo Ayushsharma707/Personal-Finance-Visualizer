@@ -94,7 +94,6 @@ Now, open http://localhost:3000 in your browser.
 - Hover over a transaction in the Recent Transactions List.  
 - Click the ✏️ Edit or 🗑️ Delete button.
 
-```
 ### **🛠️ Contributing**  
 We welcome contributions! To contribute:
 
