@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-
-const categories = ["Food", "Rent", "Transport", "Shopping", "Entertainment", "Bills", "Other"];
+import CategorySelector from "./CategorySelector";
 
 const TransactionForm = ({ onSubmit, transaction }) => {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-
+  const [resetCategory, setResetCategory] = useState(false);
   useEffect(() => {
     if (transaction) {
       setAmount(transaction.amount || "");
@@ -38,6 +37,8 @@ const TransactionForm = ({ onSubmit, transaction }) => {
     setDate("");
     setDescription("");
     setCategory("");
+    setResetCategory(true); // Reset category selector
+    setTimeout(() => setResetCategory(false), 200); 
   };
 
   return (
@@ -61,16 +62,8 @@ const TransactionForm = ({ onSubmit, transaction }) => {
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
           className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" />
       </div>
-
       <div className="mb-4">
-        <label className="block text-gray-700 font-medium">Category:</label>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}
-          className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
-          <option value="">Select a Category</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
+        <CategorySelector category={category} setCategory={setCategory} resetCategory={resetCategory} />
       </div>
 
       <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">

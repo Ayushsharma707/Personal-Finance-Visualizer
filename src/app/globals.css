@@ -70,12 +70,13 @@ button {
   border: none;
   cursor: pointer;
   font-weight: 500;
-  transition: 0.3s;
+ transition: all 0.3s ease-in-out;
 }
 
 button:hover {
   background: #4f46e5;
-  transform: translateY(-1px);
+    transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Transactions List */
@@ -245,4 +246,22 @@ button:hover {
 
 .delete-btn:hover {
   background: #e11d48;
+}
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;  /* Adjust to move a bit above the bottom edge */
+  right: 20px;   /* Adjust to move a bit to the left of the right edge */
+  background-color: #3b82f6;  /* Blue background */
+  padding: 15px;   /* Increase padding for a better look */
+  border-radius: 50%;  /* Circular shape */
+  font-size: 26px;   /* Slightly larger font */
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Softer shadow for a more polished look */
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transition for background and scale */
+  z-index: 1000;  /* Ensure it stays on top of other content */
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #2563eb;  /* Darker Blue on hover */
+  transform: scale(1.1);  /* Slightly enlarge button on hover for a more interactive feel */
 }

@@ -1,15 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import TransactionForm from "@/components/TransactionForm";
 import ExpensesChart from "@/components/ExpensesChart";
 import SummaryDashboard from "@/components/SummaryDashboard";
 import CategoryChart from "@/components/CategoryChart";
-
+import BudgetForm from "@/components/BudgetForm"; // ✅ New - Budget Form Component
+import BudgetComparison from "@/components/BudgetComparison"; // ✅ New - Budget Comparison Chart
 
 const Home = () => {
   const [transactions, setTransactions] = useState([]);
   const [editTransaction, setEditTransaction] = useState(null);
+  const [showScrollButton, setShowScrollButton] = useState(false); // State for scroll button visibility
+
+  const formRef = useRef(null); // Ref for the form
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -18,6 +22,29 @@ const Home = () => {
       setTransactions(data);
     };
     fetchTransactions();
+  }, []);
+
+  useEffect(() => {
+    // Scroll to the form when an edit is triggered
+    if (editTransaction) {
+      formRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [editTransaction]);
+
+  // Scroll event listener to show/hide the button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) { // Show button after 200px scroll
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const addTransaction = async (transaction) => {
@@ -55,47 +82,74 @@ const Home = () => {
     setTransactions((prev) => prev.filter((transaction) => transaction._id !== id));
   };
 
-return (
-  <div className="container mx-auto p-6">
-    {/* Transaction Form */}
-    <TransactionForm
-      onSubmit={editTransaction ? updateTransaction : addTransaction}
-      transaction={editTransaction}
-    />
+  // Function to handle scroll-to-top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    {/* Dashboard with Category Pie Chart & Summary */}
-    <SummaryDashboard transactions={transactions}       onEdit={setEditTransaction} 
-      onDelete={deleteTransaction} />
+  return (
+    <div className="container mx-auto p-6">
+      {/* Transaction Form */}
+      <div ref={formRef}>
+        <TransactionForm
+          onSubmit={editTransaction ? updateTransaction : addTransaction}
+          transaction={editTransaction}
+        />
+      </div>
 
-    {/* Monthly Expenses Chart */}
-    <ExpensesChart transactions={transactions} />
+      {/* Budget Form - Set Monthly Budgets per Category */}
+      <BudgetForm /> 
 
-    {/* Transactions List with Edit & Delete Options */}
-    <ul className="transaction-list">
-      {transactions.map((transaction) => (
-        <li key={transaction._id} className={`transaction-item ${transaction.amount >= 0 ? "transaction-income" : "transaction-expense"}`}>
-          <div className="transaction-details">
-            <p className="transaction-amount">₹{Math.abs(transaction.amount)}</p>
-            <p className="transaction-date">
-              {new Date(transaction.date).toISOString().split("T")[0]} - {transaction.description}
-            </p>
-            <p className="transaction-category">
-              Category: <strong>{transaction.category || "Uncategorized"}</strong>
-            </p>
-          </div>
+      {/* Dashboard with Category Pie Chart & Summary */}
+      <SummaryDashboard 
+        transactions={transactions} 
+        onEdit={setEditTransaction} 
+        onDelete={deleteTransaction} 
+      />
 
-          {/* Edit & Delete Buttons */}
-          <div className="transaction-buttons">
-            <button onClick={() => setEditTransaction(transaction)} className="edit-btn">✏️ Edit</button>
-            <button onClick={() => deleteTransaction(transaction._id)} className="delete-btn">🗑️ Delete</button>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+      {/* Monthly Expenses Chart */}
+      <ExpensesChart transactions={transactions} />
 
+      {/* Budget vs Actual Spending Chart */}
+      <BudgetComparison transactions={transactions} />
 
+      {/* Transactions List with Edit & Delete Options */}
+      <ul className="transaction-list">
+        {transactions.map((transaction) => (
+          <li 
+            key={transaction._id} 
+            className={`transaction-item ${transaction.amount >= 0 ? "transaction-income" : "transaction-expense"}`}
+          >
+            <div className="transaction-details">
+              <p className="transaction-amount">₹{Math.abs(transaction.amount)}</p>
+              <p className="transaction-date">
+                {new Date(transaction.date).toISOString().split("T")[0]} - {transaction.description}
+              </p>
+              <p className="transaction-category">
+                Category: <strong>{transaction.category || "Uncategorized"}</strong>
+              </p>
+            </div>
+
+            {/* Edit & Delete Buttons */}
+            <div className="transaction-buttons">
+              <button onClick={() => setEditTransaction(transaction)} className="edit-btn">✏️ Edit</button>
+              <button onClick={() => deleteTransaction(transaction._id)} className="delete-btn">🗑️ Delete</button>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {/* Scroll-to-Top Button */}
+      {showScrollButton && (
+        <button
+          onClick={scrollToTop}
+          className="scroll-to-top-btn fixed bottom-0 right-0 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all"
+        >
+          ↑
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default Home;
