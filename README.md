@@ -11,7 +11,9 @@ A modern **expense tracking** web application that allows users to **add, edit, 
 - ✅ **Monthly Expense Chart** – Track spending trends over time.  
 - ✅ **Summary Dashboard** – View total expenses and recent transactions.  
 - ✅ **Hover Actions** – Edit/Delete options appear on hover in the recent transactions list.  
-- ✅ **Responsive UI** – Works on desktop & mobile devices.  
+- ✅ **Responsive UI** – Works on desktop & mobile devices.
+- ✅ **Budgeting System** – Set monthly budgets and compare spending.
+- ✅ **Responsive UI** – Works on desktop & mobile devices.
 
 ---
 
@@ -66,6 +68,10 @@ Now, open http://localhost:3000 in your browser.
 3️⃣ **Editing & Deleting Transactions**  
 - Hover over a transaction in the Recent Transactions List.  
 - Click the ✏️ Edit or 🗑️ Delete button.
+
+4️⃣ **Budgeting & Insights**  
+- Set monthly budgets for different categories.  
+- Compare budget vs actual spending with the insights dashboard.
 
 ## 🛠️ Contributing
 
