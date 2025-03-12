@@ -54,8 +54,9 @@ Now, open http://localhost:3000 in your browser.
 
 
 ```
-### **🖥️ Usage**
 
+### **🖥️ Usage**
+```
 1️⃣ **Adding a Transaction**  
 - Enter amount, date, description, and category.  
 - Click on "Add Transaction.
@@ -72,7 +73,7 @@ Now, open http://localhost:3000 in your browser.
 4️⃣ **Budgeting & Insights**  
 - Set monthly budgets for different categories.  
 - Compare budget vs actual spending with the insights dashboard.
-
+```
 ## 🛠️ Contributing
 
 We welcome contributions! To contribute:
